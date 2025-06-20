@@ -6,39 +6,45 @@ import {
   TextField,
   SxProps,
 } from "@mui/material";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { rem } from "polished";
+import { toast } from "react-toastify";
+import { forwardRef } from "react";
 
 export interface ContactUsFormProps {
   sx?: SxProps;
+  buttonSx?: SxProps;
+  buttonText?: string;
+  title?: string;
+  messageTitle?: string;
 }
+
+const url = "https://contactusemailer.onrender.com/api/send";
+const recipientEmail = "mikeh80@hotmail.co.uk";
 
 const sendEmail = async (values: {
   user_name: string;
   user_email: string;
   message: string;
 }) => {
-  const url = "https://api.brevo.com/v3/smtp/email";
 
   const data = {
-    sender: { name: values.user_name, email: values.user_email },
-    to: [{ email: "michael.web4all@gmail.com", name: "Recipient" }],
-    subject: "Hello from your Web App!",
-    htmlContent: `<h1>${values.message}</h1>`,
+    name: values.user_name,
+    senderEmail: values.user_email,
+    recipientEmail,
+    message: values.message,
   };
 
-  const response = await fetch(url, {
+  fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "api-key":""
     },
     body: JSON.stringify(data),
   });
 
-  const result = await response.json();
-  console.log(result);
 };
 
 const validationSchema = Yup.object({
@@ -49,21 +55,29 @@ const validationSchema = Yup.object({
   message: Yup.string().required("Message is required"),
 });
 
-export const ContactUsForm = ({ sx }: ContactUsFormProps) => {
+export const ContactUsForm = forwardRef<HTMLElement, ContactUsFormProps>(
+  ({
+  sx,
+  title = "Contact Us",
+  buttonText= "Send Message",
+  buttonSx,
+  messageTitle ="Your Message",
+ }, ref) => {
   return (
     <Box
+      ref={ref}
       sx={{
-        maxWidth: 600,
+        maxWidth: {xs: "100%", lg: rem(600)},
         backgroundColor: "white",
         borderRadius: 2,
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         padding: 3,
-        mt: 4,
+        mt: {xs: 1, md: 2, lg: 4},
         ...sx,
       }}
     >
       <Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
-        Contact Us
+        {title}
       </Typography>
       <Formik
         initialValues={{ user_name: "", user_email: "", message: "" }}
@@ -71,6 +85,11 @@ export const ContactUsForm = ({ sx }: ContactUsFormProps) => {
         onSubmit={(values, { resetForm }) => {
           sendEmail(values);
           resetForm();
+          // Show success toast notification
+            toast.success("Message successfully sent", {
+            position: "bottom-center",
+            autoClose: 2000,
+            });
         }}
       >
         {({
@@ -107,7 +126,7 @@ export const ContactUsForm = ({ sx }: ContactUsFormProps) => {
               <TextField
                 fullWidth
                 name="message"
-                label="Your Message"
+                label={messageTitle}
                 multiline
                 rows={4}
                 value={values.message}
@@ -120,10 +139,10 @@ export const ContactUsForm = ({ sx }: ContactUsFormProps) => {
                 type="submit"
                 variant="contained"
                 color="primary"
-                sx={{ alignSelf: "flex-end" }}
+                sx={{ alignSelf: "flex-end", ...buttonSx }}
                 disabled={isSubmitting}
               >
-                Send Message
+                {buttonText}
               </Button>
             </Stack>
           </Form>
@@ -131,4 +150,4 @@ export const ContactUsForm = ({ sx }: ContactUsFormProps) => {
       </Formik>
     </Box>
   );
-};
+});

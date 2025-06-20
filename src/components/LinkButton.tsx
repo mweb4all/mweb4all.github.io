@@ -21,6 +21,11 @@ export const LinkButton = forwardRef<HTMLElement, LinkButtonProps>(
         ml: 2,
         height: rem(40),
         textTransform: "capitalize",
+        "&:hover": {
+          backgroundColor: grey,
+          borderColor: blue,
+          color: "white",
+        },
       }}
       onClick={() => {
         if (ref && typeof ref !== "function" && ref.current) {

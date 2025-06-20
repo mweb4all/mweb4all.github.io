@@ -4,7 +4,8 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
-import { Config } from "./Config";
+import { Home } from "./Home";
+import { ToastContainer } from "react-toastify";
 
 const theme = createTheme({
   typography: {
@@ -42,6 +43,9 @@ const theme = createTheme({
         fontSize: "2.25rem", // Tablet
       },
       [createTheme().breakpoints.up("md")]: {
+        fontSize: "2.5rem", // Desktop
+      },
+      [createTheme().breakpoints.up("lg")]: {
         fontSize: "2.75rem", // Desktop
       },
     },
@@ -89,7 +93,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <p>TEST</p>
+          <Home />
+          <ToastContainer />
         </ThemeProvider>
       </BrowserRouter>
     </React.StrictMode>
