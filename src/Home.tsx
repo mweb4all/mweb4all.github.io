@@ -143,28 +143,25 @@ export const Home = () => {
         color="default"
         sx={{
           // backgroundColor: "#1e88e5",
-          background: "linear-gradient(135deg, #1e88e5, #42a5f5)",
-          color: "white",
-          boxShadow: "none",
-          padding: "0.5rem 1rem",
-          borderBottom: `4px solid #FF9149`,
-        }}
-      >
+            background: "linear-gradient(135deg, #1e88e5, #42a5f5)",
+            color: "white",
+            boxShadow: "none",
+            py: "0.5rem",
+            px: {xs: "0.5rem", md: "1rem"},
+            borderBottom: `4px solid #FF9149`,
+          }}
+          >
         <Toolbar
           sx={{
             flexDirection: "row",
             justifyContent: "space-between",
+            p: 0
           }}
         >
-          <Stack
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-          >
             <Typography
               variant="h6"
               sx={{
-                textAlign: "center",
+                textAlign: "left",
                 mr: 0.5,
                 color: "white",
                 flexGrow: 1,
@@ -175,7 +172,6 @@ export const Home = () => {
             >
               Web4All
             </Typography>
-          </Stack>
           <Stack direction="row" gap={1}>
             <Button
               variant="contained"
@@ -184,6 +180,7 @@ export const Home = () => {
                 backgroundColor: "white",
                 color: "#1e88e5",
                 "&:hover": { backgroundColor: "#e3f2fd" },
+                px: {xs: "0.5rem", md: "1rem"}
               }}
               onClick={() => {
                 if (faqsSectionRef.current) {
@@ -202,6 +199,7 @@ export const Home = () => {
                 backgroundColor: "white",
                 color: "#1e88e5",
                 "&:hover": { backgroundColor: "#e3f2fd" },
+                px: {xs: "0.5rem", md: "1rem"}
               }}
               onClick={() => {
                 if (contactSectionRef.current) {
@@ -274,7 +272,7 @@ export const Home = () => {
           alignItems: "center",
         }}
       >
-        <Box component="ul" sx={{ pl: {xs:2, md: 4}, mt: 0, flex:{lg: 1} }}>
+        <Box component="ul" sx={{ pl: {xs:2, md: 4}, mt: 0, flex:{md: 1} }}>
           {benefits.map((benefit, index) => (
             <li
               key={index}
@@ -296,7 +294,7 @@ export const Home = () => {
             </li>
           ))}
         </Box>
-        <Screen style={{ height: isDesktop ? "500px" : "300px", width: "50%" }} />
+        <Screen style={{ height: isDesktop ? "450px" : "300px", width: isDesktop ? "450px" : "300px" }} />
       </Stack>
       <Stack
         direction="row"
@@ -372,11 +370,11 @@ export const Home = () => {
           time-consuming. Its never been easier to get your business online.
         </Typography>
       </Stack>
-      <Typography variant="h5" sx={{ textAlign: "center", mt: 4 }}>
+      <Typography variant="h5" sx={{ textAlign: "center", mt: {xs:2, md: 4} }}>
         FAQs
       </Typography>
-      <Faqs ref={faqsSectionRef} sx={{ my: 4, maxWidth: {xs: "100%", lg: contentWidth}, mx: {xs: 2, lg: "auto"}}} faqs={generalInformation} />
-      <ContactUsForm ref={contactSectionRef} sx={{ flex: 1, boxShadow: "none", mx: "auto" }} title="Make me a website" buttonSx={{alignSelf: "center"}} messageTitle="Business name and a few details"/>
+      <Faqs ref={faqsSectionRef} sx={{ my: 4, maxWidth: {xs: "100%", lg: contentWidth}, mx: {xs: 2, lg: "auto"}, my: {xs:2, md: 4}}} faqs={generalInformation} />
+      <ContactUsForm ref={contactSectionRef} sx={{ flex: 1, boxShadow: "none", mx: "auto", pt: {xs: 1}}} title="Make me a website" buttonSx={{alignSelf: "center"}} messageTitle="Business name and a few details"/>
       <Copyright />
     </>
   );
