@@ -373,7 +373,7 @@ export const Home = () => {
       <Typography variant="h5" sx={{ textAlign: "center", mt: {xs:2, md: 4} }}>
         FAQs
       </Typography>
-      <Faqs ref={faqsSectionRef} sx={{ my: 4, maxWidth: {xs: "100%", lg: contentWidth}, mx: {xs: 2, lg: "auto"}, my: {xs:2, md: 4}}} faqs={generalInformation} />
+      <Faqs ref={faqsSectionRef} sx={{ maxWidth: {xs: "100%", lg: contentWidth}, mx: {xs: 2, lg: "auto"}, my: {xs:2, md: 4}}} faqs={generalInformation} />
       <ContactUsForm ref={contactSectionRef} sx={{ flex: 1, boxShadow: "none", mx: "auto", pt: {xs: 1}}} title="Make me a website" buttonSx={{alignSelf: "center"}} messageTitle="Business name and a few details"/>
       <Copyright />
     </>
