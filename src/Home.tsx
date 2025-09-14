@@ -19,7 +19,8 @@ import { useIsDesktop, useIsMobile, useIsTablet } from "./hooks/breakpoint";
 
 //ANalytics needs mentioning
 
-const price = 12;
+const price = 9.99;
+const singlePayment = 399;
 
 const generalInformation: Array<FaqProps> = [
   {
@@ -27,7 +28,7 @@ const generalInformation: Array<FaqProps> = [
     answer: (
       <>
         <Typography variant="body1" gutterBottom>
-          Just £{price} a month, with no setup costs.
+          £{singlePayment} a month to build and set up, then just £{price} a month.
         </Typography>
       </>
     ),
@@ -44,7 +45,7 @@ const generalInformation: Array<FaqProps> = [
     question: "How do I pay?",
     answer: (
       <Typography variant="body1">
-        Just set up a standing order for £{price} a month to our bank account, and we'll take care of the rest.
+        A single payment of £{singlePayment}, then just set up a standing order for £{price} a month to our bank account.
       </Typography>
     ),
   },
@@ -68,7 +69,7 @@ const generalInformation: Array<FaqProps> = [
     question: "Can I edit my own website?",
     answer: (
       <Typography variant="body1">
-        You may ask us to change wording, pictures, and prices—but beyond that, no other changes can be made. We aim to keep things as simple as possible.
+        You may ask us to change wording, pictures, and prices—anytime! We aim to keep things as simple as possible.
         If you’re looking for more configuration options, this service may not be the right fit for you.
       </Typography>
     ),
@@ -107,9 +108,6 @@ Increase your business online presence and reach more customers.
   </>,
   <>
 <b>73%</b> of small businesses have a website. It's time you joined them.
-  </>,
-  <>
-No set up costs - just a simple monthly fee of <b>£{price}</b>.
   </>,
   <>
 No need to learn HTML or config, no domain worries, just email with price or picture updates and we'll do the rest.
@@ -231,11 +229,12 @@ export const Home = () => {
             mb: 2,
           }}
         >
-          We build it. Just £{price} a month. That's it.
+          We build it for £{singlePayment}. Then just £{price} a month. That's it.
         </Typography>
-        <Typography variant="h6" sx={{ mb: 4 }}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
           Affordable, professional websites for small businesses.
         </Typography>
+
         <Button
           variant="contained"
           sx={{
@@ -246,6 +245,7 @@ export const Home = () => {
             borderRadius: "50px",
             width: "fit-content",
             margin: "0 auto",
+            height: rem(40),
             "&:hover": { backgroundColor: "#e3f2fd" },
           }}
           onClick={() => {
@@ -258,6 +258,30 @@ export const Home = () => {
         >
           Make me a website please
         </Button>
+        
+
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "white",
+              color: "#FF9149",
+              fontWeight: "bold",
+              padding: "0.75rem 2rem",
+              borderRadius: "50px",
+              width: "fit-content",
+              mt: 2,
+              mx: "auto",
+              height: rem(40),
+              textTransform: "none",
+              "&:hover": { backgroundColor: "#e3f2fd" },
+              fontSize: "1rem",
+            }}
+            href="https://www.gowebly.co.uk/exampleSite/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Demo Site
+          </Button>
       </Stack>
       <Stack
         flexDirection={{xs:"column", md: "row"}}
@@ -357,7 +381,7 @@ export const Home = () => {
           variant="body1"
           sx={{ mt: 2, maxWidth: contentWidth, mx: "auto" }}
         >
-          Request us to make you a website - once you like what you see, we can finalise things like price and pictures. And thats it.
+          We handle everything, all we'll ask for is some pictures and information, we'll do the rest.
         </Typography>
         <Typography
           variant="body1"
@@ -371,7 +395,7 @@ export const Home = () => {
         FAQs
       </Typography>
       <Faqs ref={faqsSectionRef} sx={{ maxWidth: {xs: "100%", lg: contentWidth}, mx: {xs: 2, lg: "auto"}, my: {xs:2, md: 4}}} faqs={generalInformation} />
-      <ContactUsForm ref={contactSectionRef} sx={{ flex: 1, boxShadow: "none", mx: "auto", pt: {xs: 1}}} title="Make me a website" buttonSx={{alignSelf: "center"}} messageTitle="Business name and a few details"/>
+      <ContactUsForm ref={contactSectionRef} sx={{ flex: 1, boxShadow: "none", mx: "auto", pt: {xs: 1}}} title="Lets get started, enquire today." buttonSx={{alignSelf: "center"}} messageTitle="Business name and a few details"/>
       <Copyright />
     </>
   );
